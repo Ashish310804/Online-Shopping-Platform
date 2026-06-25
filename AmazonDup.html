@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AMAZON</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="AmazonDup.css">
+</head>
+<body>
+    <header>
+        <div class="navbar">
+            <div class="nav-logo border">
+                <a href="#TOP" class="logo-link">
+                    <img src="amazon_logo.png" height="50px" width="150px">
+                </a>
+            </div>
+            <div class="nav-address border">
+                <p class="add-first" id="TOP"> Delivering to Dehradun 248007</p>
+                <div class="add-icon">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <p class="add-sec">Update location</p>
+                </div>
+            </div>
+            <div class="nav-search">
+                <select class="search-select">
+                    <option>All</option>
+                </select>
+                <input placeholder="Search Amazon.in" class="search-input" id="searchInput" oninput="searchProducts()">
+                <div class="search-icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <div id="search-results" class="search-dropdown"></div>
+            </div>
+            <div class="border">
+                <i class="fa-solid fa-indian-rupee-sign"></i>
+                <select class="nav-cntry">
+                    <option> EN </option>
+                    <option> HN </option>
+                    <option> UR </option>
+                </select>
+            </div>
+            <div class="nav-signin border">
+                <p> <span> Hello, sign in </span></p>
+                <p class="nav-second"> Account & Lists </p>
+            </div>
+            <div class="nav-return border">
+                <p> <span> Returns </span></p>
+                <p class="nav-second"> & Orders </p>
+            </div>
+            <div class="nav-cart border">
+                <i class="fa-solid fa-cart-shopping"></i>
+                Cart
+            </div>
+        </div>
+        <div class="panel">
+            <div class="panel-all border">
+                <b><i class="fa-solid fa-bars"></i>
+                    All</b>
+            </div>
+            <div class="panel-options">
+                <p class="border">Fresh</p>
+                <p class="border">MX Player</p>
+                <p class="border"> Sell</p>
+                <p class="border">Bestsellers</p>
+                <p class="border">Today's Deals</p>
+                <p class="border">Mobiles</p>
+                <p class="border"> Prime</p>
+                <p class="border">Customer Service</p>
+                <p class="border">New Releases</p>
+                <p class="border">Fashion</p>
+                <p class="border"> Amazon Pay</p>
+                <p class="border">Electronics</p>
+                <p class="border">Home & Kitchen</p>
+                <p class="border">Computers</p>
+                <p class="border">Books</p>
+            </div>
+        </div>
+    </header>
+    <script>
+        async function loadProducts() {
+            const response = await fetch('http://localhost:3000/api/products');
+            const data = await response.json();
+            console.log(data);
+        }
+        function searchProducts() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const resultsBox = document.getElementById('search-results');
+            resultsBox.innerHTML = '';
+            if (filter.length === 0) {
+                resultsBox.style.display = 'none';
+                return;
+            }
+            const filtered = products.filter(item => item.toLowerCase().includes(filter));
+            if (filtered.length > 0) {
+                resultsBox.style.display = 'block';
+                filtered.forEach(item => {
+                    const div = document.createElement('div');
+                    div.classList.add('result-item');
+                    div.innerHTML = item.replace(new RegExp(filter, 'gi'), (match) => `<b>${match}</b>`);
+                    div.onclick = () => {
+                        input.value = item;
+                        resultsBox.style.display = 'none';
+                    };
+                    resultsBox.appendChild(div);
+                });
+            } else {
+                resultsBox.style.display = 'none';
+            }
+        }
+        document.addEventListener('click', (e) => {
+            if (!document.querySelector('.nav-search').contains(e.target)) {
+                document.getElementById('search-results').style.display = 'none';
+            }
+        });
+    </script>
+
+    <div class="hero-slider">
+        <div class="slider-container">
+            <div class="slide"
+                style="background-image: url('https://images-eu.ssl-images-amazon.com/images/G/31/OHL/PD25/Payal/GW-Hero-Pc-01_GOLD._CB790067108_.jpg');">
+            </div>
+            <div class="slide" style="background-image: url(Hero_section_image1.png);"></div>
+            <div class="slide" style="background-image: url(Hero_section_image2.png);"></div>
+        </div>
+    </div>
+
+    <div class="shop-section">
+        <!-- BOX 1 -->
+        <div class="card">
+            <h2>Automotive essentials | Up to 60% off</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQRtzlAg584sQkVtzwEEwDKyQQjLeHIohckLw&s"
+                        alt="">
+                    <p>Cleaning accessories</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRrMMe9f1N2ICAqO7O177QYRGpmn4B3TYAYxA&s"
+                        alt="">
+                    <p>Tyre & rim care</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRVuzFScdUqO2C-rPhtmkbWMJF3xkqyawtmXg&s"
+                        alt="">
+                    <p>Helmets</p>
+                </div>
+                <div class="item">
+                    <img src="https://m.media-amazon.com/images/I/71lVwl3q-kL._AC_SY200_.jpg" alt="">
+                    <p>Vacuum cleaner</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+        <!-- BOX 2 -->
+        <div class="card">
+            <h2>Starting ₹49 | Deals on home essentials</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMsl9hkFZhUZ2I3-PVpvVAHHlyXtFTA-qzIQ&s"
+                        alt="">
+                    <p>Cleaning supplies</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCL1RasV4Qm7OsXNmC9B39uM4JoSA09kDQPA&s"
+                        alt="">
+                    <p>Bathroom accesories</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-aWgYE_XqMm3FhRx5cz-bXHbOGgu_zoTifw&s"
+                        alt="">
+                    <p>Home tools</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQONEdE4ob2-Wo1nngNdULQkaPEDtc_SWciA&s"
+                        alt="">
+                    <p>Wallpapers</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+        <!-- BOX 3 -->
+        <div class="card">
+            <h2>Bulk order discounts + Up to 18% GST savings</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEPxjK1bWtJdWd2Up1TmkOWiCm3Zz76dr5CA&s"
+                        alt="">
+                    <p>Upto 45% off | Laptops</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIbA4lMGXvEC52abWNEJ_uKdgbO-6MXz9WXw&s"
+                        alt="">
+                    <p>Upto 60% off | Kitchenware</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT48zC1rEJDbb1wv3sDqUIK_Wpj_XJIDEfsRw&s"
+                        alt="">
+                    <p>Min. 10% off | Office furnitures</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTS38YABCq272eT38Y08P_l2FqBLry2-iH0cw&s"
+                        alt="">
+                    <p>Register using GST, Udhyan or BPAN</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+        <!-- BOX 4 -->
+        <div class="card">
+            <h2>Up to 60% off | Bestsellers from women-led brands</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxs8jXOpyw6lnGoUKPJpSIy_fe6oJOqXw1Sg&s"
+                        alt="">
+                    <p>LED Bulbs</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSRiV2ssW2shyxQ7cogVhT931Y_yw25pOPPLw&s"
+                        alt="">
+                    <p>Night Gowns</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnELLr5voPpJd287Vh7yFmf1d_YLKEEExGuQ&s"
+                        alt="">
+                    <p>Bed Sheets</p>
+                </div>
+                <div class="item">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSn5sRNxM8k0Z5yUL5HHJRAOSrexpB57VSh8A&s"
+                        alt="">
+                    <p>Women's Undergarments</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+    </div>
+    <script>
+        function slideRight() {
+            const container = document.getElementById('productScroll');
+            // This moves the scrollbar to the right by 600 pixels
+            container.scrollLeft += 600;
+            // Loop Logic: If we are at the end, reset to the beginning
+            if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 10) {
+                container.scrollLeft = 0;
+            }
+        }
+    </script>
+
+
+
+    <div class="shop-section3">
+        <div class="s3-header">
+            <h2>Related to items you've viewed</h2>
+            <a href="#">See more</a>
+        </div>
+        <div class="product-carousel">
+            <button class="next-btn" onclick="slideRight()">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+            <div class="product-list" id="productScroll">
+                <div class="product-item"><img src="AC1.jpg" alt="AC"></div>
+                <div class="product-item"><img src="AC2.jpg" alt="AC"></div>
+                <div class="product-item"><img src="AC3.jpg" alt="AC"></div>
+                <div class="product-item"><img src="AC2.jpg" alt="AC"></div>
+                <div class="product-item"><img src="AC1.jpg" alt="AC"></div>
+                <div class="product-item"><img src="AC2.jpg" alt="AC"></div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div class="shop-section2">
+        <!-- BOX 1 -->
+        <div class="card">
+            <h2>Automotive essentials | Up to 60% off</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Cleaning accessories</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Tyre & rim care</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Helmets</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Vacuum cleaner</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+        <!-- BOX 2 -->
+        <div class="card">
+            <h2>Automotive essentials | Up to 60% off</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Cleaning accessories</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Tyre & rim care</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Helmets</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Vacuum cleaner</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+        <!-- BOX 3 -->
+        <div class="card">
+            <h2>Automotive essentials | Up to 60% off</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Cleaning accessories</p>
+                </div>
+
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Tyre & rim care</p>
+                </div>
+
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Helmets</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Vacuum cleaner</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+        <!-- BOX 4 -->
+        <div class="card">
+            <h2>Automotive essentials | Up to 60% off</h2>
+            <div class="grid">
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Cleaning accessories</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Tyre & rim care</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Helmets</p>
+                </div>
+                <div class="item">
+                    <img src="ImageNotFound.png" alt="">
+                    <p>Vacuum cleaner</p>
+                </div>
+            </div>
+            <p class="see-more">See more</p>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="shop-section4">
+        <div class="s4-header">
+            <h2>Inspired by your browsing history</h2>
+            <span>Page 1 of 7</span>
+        </div>
+
+        <div class="carousel-container">
+            <button class="slide-btn left" onclick="slide('left')"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="slide-btn right" onclick="slide('right')"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="product-slider" id="s4-slider">
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Robustt Heavy Duty AC Stand | Rust Proof Iron...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-regular fa-star"></i>
+                        <span>1,031</span>
+                    </div>
+                    <div class="p-badge">#1 Best Seller</div>
+                    <div class="p-price"><sup>₹</sup>439.00</div>
+                    <p class="p-delivery">Get it by <b>Sunday, April 5</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+                <div class="p-card">
+                    <div class="p-img"><img src="ImageNotFound.png" alt="Product"></div>
+                    <p class="p-title">Havells 16A Heavy Duty Polycarbonate Plastic...</p>
+                    <div class="p-rating">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i
+                            class="fa-solid fa-star-half-stroke"></i>
+                        <span>98</span>
+                    </div>
+                    <div class="p-price"><sup>₹</sup>169.70</div>
+                    <p class="p-delivery">Get it <b>Apr 18 - 21</b></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function slide(direction) {
+            const slider = document.getElementById('s4-slider');
+            // scrollAmount determines how far it slides. 
+            // slider.clientWidth moves it by one "page"
+            const scrollAmount = slider.clientWidth;
+
+            if (direction === 'left') {
+                slider.scrollLeft -= scrollAmount;
+            } else {
+                slider.scrollLeft += scrollAmount;
+            }
+        }
+    </script>
+
+
+
+
+
+
+
+
+    <div class="foot-panel01">
+        <center>
+            <ul>
+                <h3>See personalized recommendations </h3>
+                <h5>
+                    <div><a href="https://www.amazon.in/ap/signin?openid.mode=checkid_setup&openid.ns=http%3A%2F%2Fspecs.openid.net%2Fauth%2F2.0&openid.return_to=https%3A%2F%2Fwww.amazon.in%2Fref%3Drhf_sign_in&openid.assoc_handle=inflex&openid.pape.max_auth_age=0"
+                            class="color_black box3">Sign in </a></div>
+                </h5>
+                <h6> New customer? <u class="color_blue">Start here </u></h6>
+            </ul>
+    </div>
+    </center>
+    <a href="#TOP">
+        <div class="foot-panel1">Back to top</div>
+    </a>
+    <div class="foot-panel2">
+        <ul>
+            <b>
+                <p class="border">Get to Know Us</p>
+            </b>
+            <a class="border">About Amazon</a>
+            <a class="border">Careers</a>
+            <a class="border">Press Releases</a>
+            <a class="border">Amazon Science</a>
+        </ul>
+        <ul>
+            <b>
+                <p>Connect with Us
+            </b></p>
+            <a class="border">Facebook</a>
+            <a class="border">Twitter</a>
+            <a class="border">Instagram</a>
+
+        </ul>
+        <ul>
+            <b>
+                <p class="border">Make Money with Us</p>
+            </b>
+            <a class="border">Sell on Amazon</a>
+            <a class="border">Sell under Amazon Accelerator</a>
+            <a class="border">Supply to Amazon</a>
+            <a class="border">Become an Affiliate</a>
+            <a class="border">Fulfilment by Amazon</a>
+            <a class="border">Advertise Your Products</a>
+            <a class="border">Amazon Pay on Merchants</a>
+        </ul>
+        <ul>
+            <b>
+                <p class="border">Let Us Help You</p>
+            </b>
+            <a class="border">Your Account</a>
+            <a class="border">Returns Centre</a>
+            <a class="border">Recalls and Product Safety Alerts</a>
+            <a class="border">100% Purchase Protection</a>
+            <a class="border">Amazon App Download</a>
+            <a class="border">Help</a>
+        </ul>
+    </div>
+    <div class="foot-panel3">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div class="logo2"></div>
+        <div class="one-line">
+            <div class="border">
+                <i class="fa-solid fa-globe"></i>
+                <select class="nav-cntry border2">
+                    <option> English </option>
+                    <option> Hindi </option>
+                </select>
+            </div>
+            <div class="border">
+                <i class="fa-regular fa-flag"></i>
+                <select class="nav-cntry border2">
+                    <option> India </option>
+                </select>
+            </div>
+        </div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <div class="foot-panel4">
+        <div class="footer-column">
+            <h6 class="border">AbeBooks</h6>
+            <p class="border">Books, art</p>
+            <p>& collectibles</p>
+        </div>
+        <div class="footer-column">
+            <h6 class="border">Shopbop</h6>
+            <p class="border">Designer</p>
+            <p>Fashion Brands</p>
+        </div>
+        <div class="footer-column">
+            <h6 class="border">Amazon Business</h6>
+            <p class="border">Everything For</p>
+            <p>Your Business</p>
+        </div>
+        <div class="footer-column">
+            <h6 class="border">Audible</h6>
+            <p class="border">Download</p>
+            <p>Audio Books</p>
+        </div>
+        <div class="footer-column">
+            <h6 class="border">Prime Now</h6>
+            <p class="border">2-Hour Delivery</p>
+            <p>on Everyday Items</p>
+        </div>
+        <div class="footer-column">
+            <h6 class="border">IMDb</h6>
+            <p class="border">Movies, TV</p>
+            <p>& Celebrities</p>
+        </div>
+        <div class="footer-column">
+            <h6 class="border">Amazon Prime Music</h6>
+            <p class="border">100 million songs, ad-free</p>
+            <p>Over 15 million podcast episodes</p>
+        </div>
+    </div>
+    <div class="foot-panel5">
+        <center>
+            <h6>Conditions of Use & Sale &nbsp&nbsp&nbsp Privacy Notice &nbsp&nbsp&nbsp Interest-Based Ads</h6>
+        </center>
+        <center>
+            <h6>© 1996-2025, Amazon.com, Inc. or its affiliates</h6>
+        </center>
+        <div>
+
+</body>
+
+</html>
